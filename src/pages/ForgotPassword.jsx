@@ -1,5 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
+const BASE_URL = 'https://password-reset-backend-n5ju.onrender.com';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -9,7 +10,7 @@ export default function ForgotPassword() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:5000/api/request-reset', {
+      const res = await fetch(`${BASE_URL}/api/request-reset`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })

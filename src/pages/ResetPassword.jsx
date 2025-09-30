@@ -1,6 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+
+const BASE_URL = 'https://password-reset-backend-n5ju.onrender.com';
 
 export default function ResetPassword() {
   const { token } = useParams();
@@ -12,7 +13,7 @@ export default function ResetPassword() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:5000/api/reset-password/${token}`, {
+      const res = await fetch(`${BASE_URL}/api/reset-password/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password })

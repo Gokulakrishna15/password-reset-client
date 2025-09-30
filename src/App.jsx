@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ForgotPassword />} /> {/* 👈 Add this */}
+        <Route path="/" element={<ForgotPassword />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/success" element={<Success />} />
