@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -33,6 +33,10 @@ function Login() {
           <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Login</button>
         </form>
         {message && <p className="mt-4 text-center text-sm text-gray-700">{message}</p>}
+        <p className="mt-4 text-center text-sm text-blue-600">
+          Forgot your password?{' '}
+          <Link to="/forgot-password" className="underline hover:text-blue-800">Reset here</Link>
+        </p>
       </div>
     </div>
   );

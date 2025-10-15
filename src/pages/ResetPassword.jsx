@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const BASE_URL = 'https://password-reset-backend-n5ju.onrender.com';
-
-export default function ResetPassword() {
+function ResetPassword() {
   const { token } = useParams();
   const navigate = useNavigate();
   const [password, setPassword] = useState('');
@@ -11,12 +9,11 @@ export default function ResetPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const res = await fetch(`${BASE_URL}/api/reset-password/${token}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reset-password/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password })
+        body: JSON.stringify({ password }),
       });
 
       const data = await res.json();
@@ -26,7 +23,7 @@ export default function ResetPassword() {
       } else {
         setMessage(data.message || 'Something went wrong');
       }
-    } catch (err) {
+    } catch {
       setMessage('Server error');
     }
   };
@@ -34,7 +31,7 @@ export default function ResetPassword() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4">Reset Your Password</h2>
+        <h2 className="text-2xl font-bold mb-4 text-blue-600">Reset Your Password</h2>
         <input
           type="password"
           placeholder="New password"
@@ -49,8 +46,10 @@ export default function ResetPassword() {
         >
           Reset Password
         </button>
-        {message && <p className="text-red-500 mt-4">{message}</p>}
+        {message && <p className="text-red-500 mt-4 text-center">{message}</p>}
       </form>
     </div>
   );
 }
+
+export default ResetPassword;
